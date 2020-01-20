@@ -11,7 +11,8 @@ $smarty->setConfigDir('../smarty/configs');
 if ( isset($_POST["template"]) ) {
 
     $fpath = '../smarty/templates/' . basename($_POST["template"]); 
-    if ( file_exists($fpath) ) {
+    $fextension = pathinfo($fpath)['extension'];
+    if ( $fextension == "tpl" && file_exists($fpath) ) {
         $smarty->display($fpath);
     } else {
         $html = <<<XYZ
